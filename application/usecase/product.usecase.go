@@ -1,12 +1,12 @@
 package usecase
 
-import "github.com/VictorMayer/first-grcp-server/domain/model"
+import "github.com/VictorMayer/first-grpc-server/domain/model"
 
 type ProductUseCase struct {
 	ProductRepository model.ProductRepositoryInterface
 }
 
-func (p *ProductUseCase) AddProduct(name string, description string, price float64) (*model.Product, error) {
+func (p *ProductUseCase) CreateProduct(name string, description string, price float32) (*model.Product, error) {
 	product, err := model.NewProduct(name, description, price)
 	if err != nil {
 		return nil, err

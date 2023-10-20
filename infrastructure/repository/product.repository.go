@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/VictorMayer/first-grcp-server/domain/model"
+	"github.com/VictorMayer/first-grpc-server/domain/model"
 	"github.com/jinzhu/gorm"
 )
 
@@ -18,12 +18,12 @@ type ProductRepositoryDb struct {
 	Db *gorm.DB
 }
 
-func (r *ProductRepositoryDb) AddProduct(product *model.Product) error {
+func (r *ProductRepositoryDb) CreateProduct(product *model.Product) (*model.Product, error) {
 	err := r.Db.Create(product).Error
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return product, nil
 }
 
 func (r *ProductRepositoryDb) FindProductById(id string) (*model.Product, error) {
@@ -36,14 +36,14 @@ func (r *ProductRepositoryDb) FindProductById(id string) (*model.Product, error)
 	return &product, nil
 }
 
-func (r *ProductRepositoryDb) FindProductsByName(name string) (*model.Product, error) {
-	var product model.Product
-	r.Db.Where("name %s", name).Find(&product)
+func (r *ProductRepositoryDb) FindProductsByName(name string) ([]*model.Product, error) {
+	var products []*model.Product
+	r.Db.Where("name %s", name).Find(&products)
 
-	if product.ID == "" {
-		return nil, fmt.Errorf("product not found")
+	if len(products) == 0 {
+		return nil, fmt.Errorf("no products found")
 	}
-	return &product, nil
+	return products, nil
 }
 
 func (r *ProductRepositoryDb) FindAllProducts() ([]*model.Product, error) {

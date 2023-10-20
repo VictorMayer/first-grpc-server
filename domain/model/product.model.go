@@ -17,8 +17,8 @@ type ProductRepositoryInterface interface {
 type Product struct {
 	Base        `valid:"required"`
 	Name        string  `json:"name" gorm:"type:varchar(255)" valid:"notnull"`
-	Description string  `json:"description" gorm:"type:varchar(255)"`
-	Price       float64 `json:"price" gorm:"type:float" valid:"notnull"`
+	Description string  `json:"description" gorm:"type:varchar(255)" valid:"-"`
+	Price       float32 `json:"price" gorm:"type:float" valid:"notnull"`
 }
 
 func (product *Product) isValid() error {
@@ -30,7 +30,7 @@ func (product *Product) isValid() error {
 	return nil
 }
 
-func NewProduct(name string, description string, price float64) (*Product, error) {
+func NewProduct(name string, description string, price float32) (*Product, error) {
 	product := Product{
 		Name:        name,
 		Description: description,

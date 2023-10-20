@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/VictorMayer/first-grcp-server/domain/model"
+	"github.com/VictorMayer/first-grpc-server/domain/model"
 
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"

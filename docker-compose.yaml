@@ -71,13 +71,13 @@ services:
   #     CONTROL_CENTER_REPLICATION_FACTOR: 1
   #     PORT: 9021
 
-  pgadmin:
-    image: dpage/pgadmin4
-    tty: true
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@user.com
-      - PGADMIN_DEFAULT_PASSWORD=123456
-    ports:
-      - "9000:80"
-    depends_on:
-      - db
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   tty: true
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@user.com
+  #     - PGADMIN_DEFAULT_PASSWORD=123456
+  #   ports:
+  #     - "9000:80"
+  #   depends_on:
+  #     - db
